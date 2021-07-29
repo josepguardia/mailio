@@ -155,6 +155,11 @@ string smtp::submit(const message& msg)
     tokens = parse_line(line);
     if (!positive_completion(std::get<0>(tokens)))
         throw smtp_error("Mail message rejection.");
+
+    std::cout << "XX0: " << std::get<0>(tokens) << std::endl;
+    std::cout << "XX1: " << std::get<1>(tokens) << std::endl;
+    std::cout << "XX2: " << std::get<2>(tokens) << std::endl;
+
     return std::get<2>(tokens);
 }
 

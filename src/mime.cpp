@@ -10,7 +10,7 @@ copy at http://www.freebsd.org/copyright/freebsd-license.html.
 
 */
 
-
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -293,27 +293,23 @@ string mime::boundary() const
 }
 
 
-void mime::content(const string& content_str)
-{
-    _content = content_str;
+void mime::content(const string& content_str) {
+    _content.assign(content_str);
 }
 
 
-string mime::content() const
-{
+string mime::content() const {
     return _content;
 }
 
 
-void mime::add_part(const mime& part)
-{
+void mime::add_part(const mime& part) {
     _parts.push_back(part);
 }
 
 
-vector<mime> mime::parts() const
-{
-    return _parts;
+vector<mime>& mime::parts() {
+    return std::ref(_parts);
 }
 
 

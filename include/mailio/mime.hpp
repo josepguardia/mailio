@@ -316,7 +316,7 @@ public:
 
     @return Vector of mime parts.
     **/
-    std::vector<mime> parts() const;
+    std::vector<mime>& parts();
 
     /**
     Setting the message decoding and encoding line policy.
