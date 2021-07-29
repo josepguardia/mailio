@@ -307,7 +307,6 @@ void mime::add_part(const mime& part) {
     _parts.push_back(part);
 }
 
-
 vector<mime>& mime::parts() {
     return std::ref(_parts);
 }
