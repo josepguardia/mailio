@@ -157,7 +157,7 @@ endif()
 
 if(OPENSSL_FOUND)
     target_include_directories(${PROJECT_NAME} PUBLIC ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARY})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENSSL_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARY})
 endif()
 
 if(MINGW)
