@@ -152,7 +152,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/export.hpp DESTINATION "${INCLUDE_INST
 
 if(Boost_FOUND)
     target_include_directories(${PROJECT_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
-    target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${Boost_LIBRARIES})
 endif()
 
 if(OPENSSL_FOUND)
@@ -161,7 +161,7 @@ if(OPENSSL_FOUND)
 endif()
 
 if(MINGW)
-    target_link_libraries(${PROJECT_NAME} -lws2_32 )
+    target_link_libraries(${PROJECT_NAME} PUBLIC -lws2_32 )
 endif(MINGW)
 
 install(DIRECTORY include/mailio
