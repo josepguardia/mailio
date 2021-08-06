@@ -157,16 +157,19 @@ endif()
 
 if(OPENSSL_FOUND)
     target_include_directories(${PROJECT_NAME} PUBLIC ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} ${OPENSSL_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARY})
 endif()
 
 if(MINGW)
     target_link_libraries(${PROJECT_NAME} -lws2_32 )
 endif(MINGW)
 
-install(DIRECTORY include/mailio DESTINATION ${INCLUDE_INSTALL_DIR})
+install(DIRECTORY include/mailio
+        COMPONENT Development EXCLUDE_FROM_ALL
+        DESTINATION ${INCLUDE_INSTALL_DIR})
 
 install(TARGETS ${PROJECT_NAME}
+    COMPONENT Development EXCLUDE_FROM_ALL
     EXPORT ${PROJECT_NAME}Config
     LIBRARY DESTINATION ${LIB_INSTALL_DIR}
     ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
@@ -175,7 +178,9 @@ install(TARGETS ${PROJECT_NAME}
 
 export(TARGETS ${PROJECT_NAME} FILE ${PROJECT_NAME}Config.cmake)
 
-install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
+install(EXPORT ${PROJECT_NAME}Config
+        COMPONENT Development EXCLUDE_FROM_ALL
+        DESTINATION share/${PROJECT_NAME}/cmake)
 
 # optionally build examples
 if(${MAILIO_BUILD_EXAMPLES})
